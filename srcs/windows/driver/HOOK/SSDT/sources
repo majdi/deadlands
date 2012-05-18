@@ -1,0 +1,8 @@
+TARGETNAME = deadlands-ssdt
+TARGETPATH = obj
+TARGETTYPE = DRIVER
+
+INCLUDES   = %BUILD%\inc
+LIBS       = %BUILD%\lib
+
+SOURCES    = deadlands-ssdt.c

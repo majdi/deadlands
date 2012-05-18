@@ -1,0 +1,167 @@
+﻿<Window x:Class="deadlands.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="deadlands - strasbourg" Height="344" Width="431">
+    
+    <!-- Main Panel -->
+    <StackPanel Margin="12,6,12,12" Height="290">
+
+        <!-- Title Label -->
+        <!--
+        <Label FontWeight="Bold" FontSize="24" Foreground="White" Margin="0,0,0,6">
+            
+            <Label.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Offset="0" Color="#6E81F2"/>
+                    <GradientStop Offset="0.9" Color="White"/>
+                    <GradientStop Offset="1" Color="White"/>
+                </LinearGradientBrush>
+            </Label.Background>
+            Deadlands
+        </Label>
+        -->
+
+        <!-- Instruction Label -->
+        <Label BorderThickness="1" Margin="0,0,0,6" Padding="8" BorderBrush="DarkGray" Foreground="#333333">
+            <!-- Give the label a linear gradient background -->
+            <Label.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#E1F3FC"/>
+                    <GradientStop Offset="0.6" Color="#B2DFF8"/>
+                    <GradientStop Offset="1" Color="#B2DFF8"/>
+                </LinearGradientBrush>
+            </Label.Background>
+
+            <!-- Label content -->
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/bsod.png" Height="24"/>
+                <TextBlock VerticalAlignment="Center" Margin="6,0,0,0">
+					Deadlands: It hides process..... and try to pown "Le Roux" :p
+				</TextBlock>
+            </StackPanel>
+        </Label>
+
+        <TabControl>
+            <TabItem Header="Driver">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="43" />
+                        <RowDefinition Height="Auto" MinHeight="33" />
+                        <RowDefinition Height="Auto" MinHeight="43" />
+                        <RowDefinition Height="Auto" MinHeight="43" />
+                        <RowDefinition Height="Auto" MinHeight="43" />
+                    </Grid.RowDefinitions>
+                    
+                    <Button Grid.Row="0" Grid.Column="0" Name="buttonBrowse" Content="Browse" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" Click="buttonBrowse_Click" />
+                    <TextBox Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Height="23" Margin="0,10,10,0" VerticalAlignment="Top"
+                             Text="{Binding Path=GetFilename}">
+                    </TextBox>
+                    <Button  Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="service" Content="Service" VerticalAlignment="Bottom" Width="75" />
+                    <ComboBox Grid.Row="1" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Margin="0,10,10,0" Grid.Column="2">
+                        <ComboBoxItem>Automatic</ComboBoxItem>
+                        <ComboBoxItem>Boot</ComboBoxItem>
+                        <ComboBoxItem>Demand</ComboBoxItem>
+                        <ComboBoxItem>Disabled</ComboBoxItem>
+                        <ComboBoxItem>System</ComboBoxItem>
+                    </ComboBox>
+                    
+                    <Button Grid.Row="2" Grid.Column="0" Name="displayName" Content="Display name" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" />
+                    <TextBox Grid.Row="2" Grid.Column="2" Height="23" Margin="0,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="3"></TextBox>
+
+                    <Button Grid.Row="3" Grid.Column="0" Name="deviceName" Content="Device name" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" />
+                    <TextBox Grid.Row="3" Grid.Column="2" Height="23" Margin="0,10,10,0" VerticalAlignment="Top" Grid.ColumnSpan="3"></TextBox>
+                    
+                    <Button Grid.Row="4" Grid.Column="0" Name="buttonRegister" Content="Register" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" Click="buttonRegister_Click" />
+                    <Button Grid.Row="4" Grid.Column="2" Name="buttonUnregister" Content="Unregister" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" Click="buttonUnregister_Click" />
+                    <Button Grid.Row="4" Grid.Column="3" Name="buttonStart" Content="Start service" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" Click="buttonStart_Click" />
+                    <Button Grid.Row="4" Grid.Column="4" Name="buttonStop" Content="Stop service" Width="75" Height="23" VerticalAlignment="Bottom"
+                           HorizontalAlignment="Left" Margin="10,10" Click="buttonStop_Click" />                    
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Processes">
+                <!-- Method deadlands -->
+                <TabControl>
+                    <TabItem Header="Target">
+                        <ListView x:Name="ListProcesses1" Height="150"><!-- SelectionChanged="ListProcesses1_SelectionChanged">-->
+                            <ListView.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                                    <GradientStop Offset="0" Color="White" />
+                                    <GradientStop Offset="1" Color="Yellow" />
+                                </LinearGradientBrush>
+                            </ListView.Background>
+
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">                                    
+                                    <GridViewColumn Header="name" DisplayMemberBinding="{Binding Path=Name}" Width="260"/>
+                                    <GridViewColumn Header="pid" DisplayMemberBinding="{Binding Path=Pid}" Width="95"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>                      
+                    </TabItem>
+                    <TabItem Header="Powned">
+                        <ListView x:Name="ListProcesses2" Height="150">
+                            <ListView.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                                    <GradientStop Offset="0" Color="White" />
+                                    <GradientStop Offset="1" Color="Yellow" />
+                                </LinearGradientBrush>
+                            </ListView.Background>
+
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">                                    
+                                    <GridViewColumn Header="name" DisplayMemberBinding="{Binding Path=Name}" Width="260"/>
+                                    <GridViewColumn Header="pid" DisplayMemberBinding="{Binding Path=Pid}" Width="95"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>                      
+                    </TabItem>
+                </TabControl>
+                <!--<Label Height="32">
+                    <TextBlock><LineBreak/><LineBreak/></TextBlock>
+                </Label>-->
+
+            </TabItem>
+            <TabItem Header="Interruption">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                        <ColumnDefinition Width="Auto" MinWidth="95" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="43" />
+                    </Grid.RowDefinitions>
+
+                    <Button  Grid.Row="0" Height="23" HorizontalAlignment="Left" Margin="10,10,0,0"
+                             Name="interrupt" Content="Interruption" VerticalAlignment="Top" Width="75"
+                             Click="buttonInterrupt_Click"/>
+                    <ComboBox Grid.Row="0" Name="ListInterrupt" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,9,10,0" Grid.Column="2">
+                        <ComboBoxItem>0x0 (Divide per 0)</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="The E.N.D">
+                <Button Grid.Row="0" Height="100" HorizontalAlignment="Left" Margin="10,10,0,0"
+                             Name="bsod" VerticalAlignment="Center" Width="100"
+                             Click="buttonBsod_Click">
+                    <Image Source="/Images/bsod.png" Height="24"/>
+                </Button>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>

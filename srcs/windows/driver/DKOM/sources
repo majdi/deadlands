@@ -1,0 +1,8 @@
+TARGETNAME = deadlands-dkom
+TARGETPATH = obj
+TARGETTYPE = DRIVER
+
+INCLUDES   = %BUILD%\inc
+LIBS       = %BUILD%\lib
+
+SOURCES    = deadlands-dkom.c
